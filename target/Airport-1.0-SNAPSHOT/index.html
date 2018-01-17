@@ -22,7 +22,7 @@ body {font-family: "Lato", sans-serif}
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Informacje</a>
     <a href="#localization" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Lokalizacja</a>
     <a href="#weatherForecast" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Prognoza pogody</a>
-    <a href="#arrivals-departures" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Przyloty i odloty</a>
+    <a href="#distanceToAirport" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Odległość od lotniska</a>
   </div>
 </div>
 
@@ -31,7 +31,7 @@ body {font-family: "Lato", sans-serif}
   <a href="#" class="w3-bar-item w3-button w3-padding-large">Informacje</a>
   <a href="#localization" class="w3-bar-item w3-button w3-padding-large">Lokalizacja</a>
   <a href="#weatherForecast" class="w3-bar-item w3-button w3-padding-large">Prognoza pogody</a>
-  <a href="#arrivals-departures" class="w3-bar-item w3-button w3-padding-large">Przyloty i odloty</a>
+  <a href="#distanceToAirport" class="w3-bar-item w3-button w3-padding-large">Odległość od lotniska</a>
 </div>
 
 <!-- Page content -->
@@ -76,7 +76,7 @@ body {font-family: "Lato", sans-serif}
         });
       }
       </script>
-      <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALU_QwspcpGdDc7gqmYbMzath7WiFkd1A&callback=initMap"
         async defer></script>
   </div>
 
@@ -85,7 +85,7 @@ body {font-family: "Lato", sans-serif}
     <h2 class="w3-wide w3-center">Prognoza pogody</h2>
     <p class="w3-center w3-opacity">Planujesz w najbliższym czasie odwiedzić lotnisko w Gdańsku? Sprawdź, jakiej pogody należy się spodziewać w ciągu kolejnych pięciu dni!</p>
     <div class="w3-center">
-        Za ile dni przyjeżdasz do Gdańska?  <input id="forecastInput" type="text"/> <button name="forecastButton" onclick="showWeather()">Sprawdź!</button></br></br>
+        Za ile dni przyjeżdasz do Gdańska?  <input id="forecastInput" type="number" min="0" max="5"/> <button name="forecastButton" onclick="showWeather()">Sprawdź!</button></br></br>
         <div id="forecastData" style="display:none">
             <p id="forecastDateTime">Data: </p>
             <img id="weatherImg"/>
@@ -98,30 +98,30 @@ body {font-family: "Lato", sans-serif}
     </div>
   </div>
 
-  <!-- The Contact Section -->
-  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="arrivals-departures">
-    <h2 class="w3-wide w3-center">A tutaj wjedzie prognoza pogody i gdzieś jeszcze przyloty/odloty</h2>
-    <p class="w3-opacity w3-center"><i>Fan? Drop a note!</i></p>
-    <div class="w3-row w3-padding-32">
-      <div class="w3-col m6 w3-large w3-margin-bottom">
-        <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
-        <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
-        <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
-      </div>
-      <div class="w3-col m6">
-        <form action="/action_page.php" target="_blank">
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-            <div class="w3-half">
-              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-            </div>
-            <div class="w3-half">
-              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-            </div>
-          </div>
-          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
-          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
-        </form>
-      </div>
+  <!-- The Distance Section -->
+  <div class="w3-black" id="distanceToAirport">
+    <div class="w3-container w3-content w3-padding-64">
+        <h2 class="w3-wide w3-center">Odległość od lotniska</h2>
+        <p class="w3-opacity w3-center">Sprawdź, jak daleka droga dzieli cię od gdańskiego lotniska!</p>
+        <div>
+            <form action="javascript:showDistance()" method="get">
+                Miejscowość, z której chcesz dojechać: <input id="originCity" type="text"/></br>
+                Miejscowość, do której chcesz dojechać: <input id="destinationCity" type="text" value="Gdańsk"/></br>
+                Wybierz metodę komunikacji:
+                <select id="travelMode">
+                    <option value="car">Samochodem</option>
+                    <option value="publicTransport">Komunikacją publiczną</option>
+                    <option value="bike">Rowerem</option>
+                    <option value="byFoot">Pieszo</option>
+                </select>
+                <p class="w3-center"><input type="submit" name="distanceSubmit" value="Wyznacz odległość!"/></p>
+            </form>
+        </div>
+        <div class="w3-center" id="distanceInfo" style="display:none">
+            <p id="travelCities"></p>
+            <p id="travelDistance"></p>
+            <p id="travelTime"></p>
+        </div>
     </div>
   </div>
   
@@ -129,43 +129,38 @@ body {font-family: "Lato", sans-serif}
 </div>
 
 <script>
-// Automatic Slideshow - change image every 4 seconds
-var myIndex = 0;
-carousel();
+    // Automatic Slideshow - change image every 4 seconds
+    var myIndex = 0;
+    carousel();
 
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";  
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+           x[i].style.display = "none";  
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}    
+        x[myIndex-1].style.display = "block";  
+        setTimeout(carousel, 4000);    
     }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}    
-    x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 4000);    
-}
 
-// Used to toggle the menu on small screens when clicking on the menu button
-function myFunction() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else { 
-        x.className = x.className.replace(" w3-show", "");
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else { 
+            x.className = x.className.replace(" w3-show", "");
+        }
     }
-}
 
-function showWeather() {
-    var listsToSkip = document.getElementById("forecastInput").value * 8;
-    if (listsToSkip == 40) 
-        listsToSkip -= 1;
-    
-    if (document.getElementById("forecastInput").value > 5) {
-        alert("Maksymalna liczba dni wynosi 5!");
-    }
-    else {
+    function showWeather() {
+        var listsToSkip = document.getElementById("forecastInput").value * 8;
+        if (listsToSkip == 40) 
+            listsToSkip -= 1;
+
         document.getElementById("forecastData").style.display = "inline";
-        
         $.getJSON("http://api.openweathermap.org/data/2.5/forecast?lat=54.38&lon=18.47&units=metric&lang=pl&APPID=2508abecb6d9037229e719a6adc445af", function (weatherCond) {
             document.getElementById("forecastDateTime").textContent = "Data: " + weatherCond.list[listsToSkip].dt_txt;
             document.getElementById("weatherImg").src = "http://openweathermap.org/img/w/" + weatherCond.list[listsToSkip].weather[0].icon + ".png";
@@ -176,15 +171,20 @@ function showWeather() {
             document.getElementById("windSpeed").textContent = "Prędkość wiatru: " + weatherCond.list[listsToSkip].wind.speed + " m/s";
         });
     }
-}
+    
+    function showDistance() {
+        var originCity = document.getElementById("originCity").value;
+        var destinationCity = document.getElementById("destinationCity").value;
+        var travelMode = document.getElementById("travelMode").value;
 
-// When the user clicks anywhere outside of the modal, close it
-var modal = document.getElementById('ticketModal');
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+        $.getJSON("airport/services/distance", {"originCity": originCity, "destinationCity": destinationCity, "travelMode": travelMode}, function(result) {
+            document.getElementById("distanceInfo").style.display = "inline";
+            
+            document.getElementById("travelDistance").textContent = "Odległość: " + result.rows[0].elements[0].distance.humanReadable;
+            document.getElementById("travelTime").textContent = "Przewidywany czas: " + result.rows[0].elements[0].duration.humanReadable;
+            document.getElementById("travelCities").textContent = result.originAddresses[0] + " ---> " + result.destinationAddresses[0];
+        });
+    }
 </script>
 
 </body>
