@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+body {font-family: "Lato", sans-serif}
+.mySlides {display: none}
+</style>
+<body>
+
+<!-- #band -> #localization, #tour -> #weatherForecast, #contact -> #arrs-and-departs
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large">Informacje</a>
+    <a href="#localization" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Lokalizacja</a>
+    <a href="#weatherForecast" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Prognoza pogody</a>
+    <a href="#arrivals-departures" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Przyloty i odloty</a>
+  </div>
+</div>
+
+<!-- Navbar on small screens -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Informacje</a>
+  <a href="#localization" class="w3-bar-item w3-button w3-padding-large">Lokalizacja</a>
+  <a href="#weatherForecast" class="w3-bar-item w3-button w3-padding-large">Prognoza pogody</a>
+  <a href="#arrivals-departures" class="w3-bar-item w3-button w3-padding-large">Przyloty i odloty</a>
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:1920px;margin-top:46px">
+
+  <!-- Automatic Slideshow Images -->
+  <div class="mySlides w3-display-container w3-center">
+    <img src="images/lotnisko1.jpg" style="width:auto">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="images/lotnisko2.jpg" style="width:auto">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="images/lotnisko3.jpg" style="width:auto">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+    </div>
+  </div>
+
+  <!-- The Information Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:900px">
+    <h2 id="efdd" class="w3-wide">Port lotniczy im. Lecha Wałęsy w Gdańsku</h2>
+    <p id="efde" class="w3-opacity"><i>Informacje ogólne</i></p>
+    <p class="w3-justify">Międzynarodowy port lotniczy im. Lecha Wałęsy w Gdańsku (IATA: GDN, ICAO: EPGD) jest największym portem lotniczym w północnej Polsce i trzecim największym portem lotniczym w kraju. W 2016 roku obsłużono tutaj
+    ponad 4 miliony pasażerów, bijąc kolejny rok z rzędu liczbę pasażerów obsłużonych na gdańskim lotnisku. Największymi przewoźnikami operującymi na gdańskim porcie lotniczym
+    są: Wizz Air, Ryanair, PLL LOT i Lufthansa. W porcie lotniczym Gdańsk obsługiwane są również loty czarterowe oraz towarowe. Do najpopularniejszych kierunków lotów należą: Londyn, Warszawa, Oslo, Sztokholm i Monachium.</p>
+  </div>
+
+  <!-- The Map Section -->
+  <div class="w3-black" align="center" id="localization">
+      <h2 class="w3-wide w3-center">Lokalizacja portu lotniczego</h2>
+      <div id="map" style="height:800px; width:1000px"></div>
+      <script>
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 54.3775, lng: 18.466111},
+          zoom: 10
+        });
+      }
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+        async defer></script>
+  </div>
+
+  <!-- The Weather Forecast Section -->
+  <div class="w3-container w3-content w3-padding-64" id="weatherForecast">
+    <h2 class="w3-wide w3-center">Prognoza pogody</h2>
+    <p class="w3-center w3-opacity">Planujesz w najbliższym czasie odwiedzić lotnisko w Gdańsku? Sprawdź, jakiej pogody należy się spodziewać w ciągu kolejnych pięciu dni!</p>
+    <div class="w3-center">
+        Za ile dni przyjeżdasz do Gdańska?  <input id="forecastInput" type="text"/> <button name="forecastButton" onclick="showWeather()">Sprawdź!</button></br></br>
+        <div id="forecastData" style="display:none">
+            <p id="forecastDateTime">Data: </p>
+            <img id="weatherImg"/>
+            <p id="temperature">Temperatura: </p>
+            <p id="weatherDesc">Warunki: </p>
+            <p id="pressure">Ciśnienie: </p>
+            <p id="humidity">Wilgotność: </p>
+            <p id="windSpeed">Prędkość wiatru: </p>
+        </div>
+    </div>
+  </div>
+
+  <!-- The Contact Section -->
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="arrivals-departures">
+    <h2 class="w3-wide w3-center">A tutaj wjedzie prognoza pogody i gdzieś jeszcze przyloty/odloty</h2>
+    <p class="w3-opacity w3-center"><i>Fan? Drop a note!</i></p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
+        <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
+      </div>
+      <div class="w3-col m6">
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+<!-- End Page Content -->
+</div>
+
+<script>
+// Automatic Slideshow - change image every 4 seconds
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 4000);    
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function myFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+
+function showWeather() {
+    var listsToSkip = document.getElementById("forecastInput").value * 8;
+    if (listsToSkip == 40) 
+        listsToSkip -= 1;
+    
+    if (document.getElementById("forecastInput").value > 5) {
+        alert("Maksymalna liczba dni wynosi 5!");
+    }
+    else {
+        document.getElementById("forecastData").style.display = "inline";
+        
+        $.getJSON("http://api.openweathermap.org/data/2.5/forecast?lat=54.38&lon=18.47&units=metric&lang=pl&APPID=2508abecb6d9037229e719a6adc445af", function (weatherCond) {
+            document.getElementById("forecastDateTime").textContent = "Data: " + weatherCond.list[listsToSkip].dt_txt;
+            document.getElementById("weatherImg").src = "http://openweathermap.org/img/w/" + weatherCond.list[listsToSkip].weather[0].icon + ".png";
+            document.getElementById("temperature").textContent = "Temperatura: " + weatherCond.list[listsToSkip].main.temp + " °C";
+            document.getElementById("weatherDesc").textContent = "Warunki: " + weatherCond.list[listsToSkip].weather[0].description;
+            document.getElementById("pressure").textContent = "Ciśnienie: " + weatherCond.list[listsToSkip].main.pressure + " hPa";
+            document.getElementById("humidity").textContent = "Wilgotność: " + weatherCond.list[listsToSkip].main.humidity + "%";
+            document.getElementById("windSpeed").textContent = "Prędkość wiatru: " + weatherCond.list[listsToSkip].wind.speed + " m/s";
+        });
+    }
+}
+
+// When the user clicks anywhere outside of the modal, close it
+var modal = document.getElementById('ticketModal');
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
