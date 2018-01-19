@@ -1,43 +1,41 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<title>Lotnisko im. Lecha Wałęsy w Gdańsku</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="scripts.js"></script>
 <style>
 body {font-family: "Lato", sans-serif}
 .mySlides {display: none}
 </style>
 <body>
 
-<!-- #band -> #localization, #tour -> #weatherForecast, #contact -> #arrs-and-departs
-
-<!-- Navbar -->
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card">
-    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
     <a href="#" class="w3-bar-item w3-button w3-padding-large">Informacje</a>
     <a href="#localization" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Lokalizacja</a>
     <a href="#weatherForecast" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Prognoza pogody</a>
     <a href="#distanceToAirport" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Odległość od lotniska</a>
+    <a href="#flightsAtAirport" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Przyloty i odloty</a>
   </div>
 </div>
 
-<!-- Navbar on small screens -->
+
 <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
   <a href="#" class="w3-bar-item w3-button w3-padding-large">Informacje</a>
   <a href="#localization" class="w3-bar-item w3-button w3-padding-large">Lokalizacja</a>
   <a href="#weatherForecast" class="w3-bar-item w3-button w3-padding-large">Prognoza pogody</a>
   <a href="#distanceToAirport" class="w3-bar-item w3-button w3-padding-large">Odległość od lotniska</a>
+  <a href="#flightsAtAirport" class="w3-bar-item w3-button w3-padding-large">Przyloty i odloty</a>
 </div>
 
-<!-- Page content -->
-<div class="w3-content" style="max-width:1920px;margin-top:46px">
 
-  <!-- Automatic Slideshow Images -->
+<div class="w3-content" style="max-width:1920px;margin-top:46px">
+    
   <div class="mySlides w3-display-container w3-center">
     <img src="images/lotnisko1.jpg" style="width:auto">
     <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
@@ -54,7 +52,7 @@ body {font-family: "Lato", sans-serif}
     </div>
   </div>
 
-  <!-- The Information Section -->
+
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:900px">
     <h2 id="efdd" class="w3-wide">Port lotniczy im. Lecha Wałęsy w Gdańsku</h2>
     <p id="efde" class="w3-opacity"><i>Informacje ogólne</i></p>
@@ -63,7 +61,7 @@ body {font-family: "Lato", sans-serif}
     są: Wizz Air, Ryanair, PLL LOT i Lufthansa. W porcie lotniczym Gdańsk obsługiwane są również loty czarterowe oraz towarowe. Do najpopularniejszych kierunków lotów należą: Londyn, Warszawa, Oslo, Sztokholm i Monachium.</p>
   </div>
 
-  <!-- The Map Section -->
+
   <div class="w3-black" align="center" id="localization">
       <h2 class="w3-wide w3-center">Lokalizacja portu lotniczego</h2>
       <div id="map" style="height:800px; width:1000px"></div>
@@ -80,7 +78,7 @@ body {font-family: "Lato", sans-serif}
         async defer></script>
   </div>
 
-  <!-- The Weather Forecast Section -->
+
   <div class="w3-container w3-content w3-padding-64" id="weatherForecast">
     <h2 class="w3-wide w3-center">Prognoza pogody</h2>
     <p class="w3-center w3-opacity">Planujesz w najbliższym czasie odwiedzić lotnisko w Gdańsku? Sprawdź, jakiej pogody należy się spodziewać w ciągu kolejnych pięciu dni!</p>
@@ -98,16 +96,16 @@ body {font-family: "Lato", sans-serif}
     </div>
   </div>
 
-  <!-- The Distance Section -->
+
   <div class="w3-black" id="distanceToAirport">
     <div class="w3-container w3-content w3-padding-64">
         <h2 class="w3-wide w3-center">Odległość od lotniska</h2>
         <p class="w3-opacity w3-center">Sprawdź, jak daleka droga dzieli cię od gdańskiego lotniska!</p>
         <div>
             <form action="javascript:showDistance()" method="get">
-                Miejscowość, z której chcesz dojechać: <input id="originCity" type="text"/></br>
-                Miejscowość, do której chcesz dojechać: <input id="destinationCity" type="text" value="Gdańsk"/></br>
-                Wybierz metodę komunikacji:
+                Miejscowość, z której chcesz dojechać: &emsp;<input id="originCity" type="text"/></br>
+                Miejscowość, do której chcesz dojechać: &ensp;<input id="destinationCity" type="text" value="Gdańsk"/></br>
+                Wybierz metodę komunikacji:&emsp;&emsp;&emsp;&emsp;&emsp;
                 <select id="travelMode">
                     <option value="car">Samochodem</option>
                     <option value="publicTransport">Komunikacją publiczną</option>
@@ -125,7 +123,35 @@ body {font-family: "Lato", sans-serif}
     </div>
   </div>
   
-<!-- End Page Content -->
+    
+  <div id="flightsAtAirport">
+    <div class="w3-container w3-content w3-padding-64">
+        <h2 class="w3-wide w3-center">Przyloty i odloty</h2>
+        <p class="w3-opacity w3-center">Sprawdź, kiedy odbywają się loty do danego miasta!</p>
+        <div class="w3-center">
+            <form action="javascript:showFlights()" method="get">
+                <input type="radio" name="flightsTypes" value="arrivals" checked>Przyloty&emsp;
+                <input type="radio" name="flightsTypes" value="departures">Odloty</br>
+                Miasto: <input id="flightsCity" type="text"/></br>
+                <p class="w3-center"><input type="submit" name="flightsSubmit" value="Pokaż loty!"/></p>
+            </form>
+        </div>
+        <div class="w3-center" id="flightsInfo" style="display:none">
+            <p id="flightsTypeAndCity"></p>
+            <table align="center" id="flightsTable">
+                <thead>
+                    <tr>
+                        <th>Przewoźnik</th>
+                        <th>Numer lotu</th>
+                        <th>Godzina</th>
+                    </tr>
+                </thead>
+                <tbody id="flightsTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+  </div>
+    
 </div>
 
 <script>
@@ -143,47 +169,6 @@ body {font-family: "Lato", sans-serif}
         if (myIndex > x.length) {myIndex = 1}    
         x[myIndex-1].style.display = "block";  
         setTimeout(carousel, 4000);    
-    }
-
-    // Used to toggle the menu on small screens when clicking on the menu button
-    function myFunction() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-        } else { 
-            x.className = x.className.replace(" w3-show", "");
-        }
-    }
-
-    function showWeather() {
-        var listsToSkip = document.getElementById("forecastInput").value * 8;
-        if (listsToSkip == 40) 
-            listsToSkip -= 1;
-
-        document.getElementById("forecastData").style.display = "inline";
-        $.getJSON("http://api.openweathermap.org/data/2.5/forecast?lat=54.38&lon=18.47&units=metric&lang=pl&APPID=2508abecb6d9037229e719a6adc445af", function (weatherCond) {
-            document.getElementById("forecastDateTime").textContent = "Data: " + weatherCond.list[listsToSkip].dt_txt;
-            document.getElementById("weatherImg").src = "http://openweathermap.org/img/w/" + weatherCond.list[listsToSkip].weather[0].icon + ".png";
-            document.getElementById("temperature").textContent = "Temperatura: " + weatherCond.list[listsToSkip].main.temp + " °C";
-            document.getElementById("weatherDesc").textContent = "Warunki: " + weatherCond.list[listsToSkip].weather[0].description;
-            document.getElementById("pressure").textContent = "Ciśnienie: " + weatherCond.list[listsToSkip].main.pressure + " hPa";
-            document.getElementById("humidity").textContent = "Wilgotność: " + weatherCond.list[listsToSkip].main.humidity + "%";
-            document.getElementById("windSpeed").textContent = "Prędkość wiatru: " + weatherCond.list[listsToSkip].wind.speed + " m/s";
-        });
-    }
-    
-    function showDistance() {
-        var originCity = document.getElementById("originCity").value;
-        var destinationCity = document.getElementById("destinationCity").value;
-        var travelMode = document.getElementById("travelMode").value;
-
-        $.getJSON("airport/services/distance", {"originCity": originCity, "destinationCity": destinationCity, "travelMode": travelMode}, function(result) {
-            document.getElementById("distanceInfo").style.display = "inline";
-            
-            document.getElementById("travelDistance").textContent = "Odległość: " + result.rows[0].elements[0].distance.humanReadable;
-            document.getElementById("travelTime").textContent = "Przewidywany czas: " + result.rows[0].elements[0].duration.humanReadable;
-            document.getElementById("travelCities").textContent = result.originAddresses[0] + " ---> " + result.destinationAddresses[0];
-        });
     }
 </script>
 
