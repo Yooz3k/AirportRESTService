@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlAttribute;
  *
  * @author Mateusz
  */
-public class Flight {
+public class Flight implements Comparable<Flight>{
 
     @XmlAttribute(name = "airport")
     private String arrivalDepartureAirport;        //airport from which (or to which) the flight to (or from) Gdansk is taking place
@@ -24,6 +24,8 @@ public class Flight {
 
     @XmlAttribute(name = "time")
     private String arrivalDepartureTime;
+
+    private int arrivalDepartureTimeNumeric;
 
     public Flight() {
     }
@@ -59,6 +61,10 @@ public class Flight {
         this.flightNumber = flightNo;
     }
 
+    public int getNumericTime() {
+        return arrivalDepartureTimeNumeric;
+    }
+
     public String getTime() {
         return arrivalDepartureTime;
     }
@@ -72,5 +78,12 @@ public class Flight {
             this.arrivalDepartureTime = Integer.toString(hours) + ":0" + Integer.toString(minutes);
         else
             this.arrivalDepartureTime = Integer.toString(hours) + ":" + Integer.toString(minutes);
+
+        this.arrivalDepartureTimeNumeric = hours*60+minutes;
+    }
+
+    @Override
+    public int compareTo(Flight other) {
+        return Integer.compare(this.arrivalDepartureTimeNumeric, other.arrivalDepartureTimeNumeric);
     }
 }

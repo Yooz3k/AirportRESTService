@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import javax.servlet.ServletContext;
@@ -81,6 +82,8 @@ public class AirportServlet {
         for (Flight aFlight: generatedFlights)
             if (aFlight.getAirport().equals(searchedAirport))
                 filteredFlights.add(aFlight);
+
+        Collections.sort(filteredFlights);
 
         return filteredFlights;
     }
