@@ -1,6 +1,6 @@
 function showWeather() {
-    var listsToSkip = document.getElementById("forecastInput").value * 8;
-    if (listsToSkip == 40) 
+    var listsToSkip = document.getElementById("forecastInput").value * 8;       //There are 8 forecasts per day
+    if (listsToSkip == 40)      //Only 39 forecasts will be returned
         listsToSkip -= 1;
 
     document.getElementById("forecastData").style.display = "inline";
@@ -57,7 +57,7 @@ function showFlights() {
             }
 
             var table = document.getElementById("flightsTableBody");
-            $("#flightsTable tbody tr").remove();       //Clear all but header row of the table
+            $("#flightsTable tbody tr").remove();       //Clear all but header rows of the table
             $.each(result, function(i, flight) {
                 var row = table.insertRow(-1);
                 var airlineCell = row.insertCell(0);

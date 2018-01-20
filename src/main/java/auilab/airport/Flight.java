@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package auilab.airport;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -67,10 +62,6 @@ public class Flight implements Comparable<Flight>{
 
     public String getTime() {
         return arrivalDepartureTime;
-    }
-
-    public void setTime(String arrDeptTime) {
-        this.arrivalDepartureTime = arrDeptTime;
     }
 
     public void setTime(int hours, int minutes) {

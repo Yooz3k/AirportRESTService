@@ -75,9 +75,8 @@ public class AirportServlet {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Flight> findFlights(@QueryParam("searchedAirport") String searchedAirport,
             @QueryParam("flightType") String flightType) throws IOException {
-        List<Flight> filteredFlights = new ArrayList<>();
-
         List<Flight> generatedFlights = new ArrayList<>(flightGenerator(FLIGHTS_TO_GENERATE));
+        List<Flight> filteredFlights = new ArrayList<>();
 
         for (Flight aFlight: generatedFlights)
             if (aFlight.getAirport().equals(searchedAirport))
