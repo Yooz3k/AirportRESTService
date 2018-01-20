@@ -22,11 +22,16 @@ function showDistance() {
 
     $.getJSON("airport/services/distance", {"originCity": originCity, "destinationCity": destinationCity, "travelMode": travelMode}, function(result) {
         document.getElementById("distanceInfo").style.display = "inline";
-            
-        document.getElementById("travelDistance").textContent = "Odległość: " + result.rows[0].elements[0].distance.humanReadable;
-        document.getElementById("travelTime").textContent = "Przewidywany czas: " + result.rows[0].elements[0].duration.humanReadable;
-        document.getElementById("travelCities").textContent = result.originAddresses[0] + " ---> " + result.destinationAddresses[0];
-    }).fail(function() {alert ("Brak danych dla podanej trasy!")});
+        
+        if (result.rows[0].elements[0].distance === null) {
+           document.getElementById("travelCities").textContent = "Brak danych dla wybranych lokalizacji!";
+        }
+        else {
+            document.getElementById("travelDistance").textContent = "Odległość: " + result.rows[0].elements[0].distance.humanReadable;
+            document.getElementById("travelTime").textContent = "Przewidywany czas: " + result.rows[0].elements[0].duration.humanReadable;
+            document.getElementById("travelCities").textContent = result.originAddresses[0] + " ---> " + result.destinationAddresses[0];
+        }
+    });
 }
     
 function showFlights() {
