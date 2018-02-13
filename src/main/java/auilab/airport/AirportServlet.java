@@ -75,7 +75,7 @@ public class AirportServlet {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Flight> findFlights(@QueryParam("searchedAirport") String searchedAirport,
             @QueryParam("flightType") String flightType) throws IOException {
-        List<Flight> generatedFlights = new ArrayList<>(flightGenerator(FLIGHTS_TO_GENERATE));
+        List<Flight> generatedFlights = new ArrayList<>(flightGenerator());
         List<Flight> filteredFlights = new ArrayList<>();
 
         for (Flight aFlight: generatedFlights)
@@ -87,15 +87,15 @@ public class AirportServlet {
         return filteredFlights;
     }
 
-    private List<Flight> flightGenerator(int numberOfFlights) throws IOException {
-        List<String> airports = Files.readAllLines(new File("G:\\MOJE DOKUMENTY\\NetBeansProjects\\Airport\\src\\main\\webapp\\airportsList.txt").toPath());
+    private List<Flight> flightGenerator() throws IOException {
+        List<String> airports = Files.readAllLines(new File("C:\\Users\\Mat\\Desktop\\AUI6\\AirportRESTService\\src\\main\\webapp\\airportsList.txt").toPath());
 
         List<Flight> flights = new ArrayList<>();
         List<String> airlines = new ArrayList<>(Arrays.asList("Lufthansa", "Ryanair", "Wizz Air", "PLL LOT", "SAS", "Norwegian", "Finnair"));
 
         Random random = new Random();
 
-        for (int i = 0; i < numberOfFlights; i++) {
+        for (int i = 0; i < FLIGHTS_TO_GENERATE; i++) {
             Flight flight = new Flight();
             flight.setAirport(airports.get(random.nextInt(airports.size())));
             flight.setFlightNumber(random.nextInt(1000));

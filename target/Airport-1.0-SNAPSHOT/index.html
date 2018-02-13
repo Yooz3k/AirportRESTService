@@ -67,11 +67,18 @@ body {font-family: "Lato", sans-serif}
       <div id="map" style="height:800px; width:1000px"></div>
       <script>
       var map;
+      var marker;
+      var position = {lat: 54.3775, lng: 18.466111};
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 54.3775, lng: 18.466111},
-          zoom: 10
+            center: position,
+            zoom: 10
         });
+        marker = new google.maps.Marker({
+            position: position,
+            map: map,
+            title: 'Lotnisko Gdańsk'
+         });
       }
       </script>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALU_QwspcpGdDc7gqmYbMzath7WiFkd1A&callback=initMap"
